@@ -4,6 +4,14 @@ let count = 0;
 const value = document.querySelector("#value");
 const btns = document.querySelectorAll(".btn");
 
+// show the count on the page
+function showCount() {
+  value.textContent = count;
+  // styles.css gives these classes their colors: green above zero, red below zero
+  value.classList.toggle("positive", count > 0);
+  value.classList.toggle("negative", count < 0);
+}
+
 btns.forEach(function (btn) {
   btn.addEventListener("click", function (e) {
     const styles = e.currentTarget.classList;
@@ -14,16 +22,6 @@ btns.forEach(function (btn) {
     } else {
       count = 0;
     }
-
-    if (count > 0) {
-      value.style.color = "green";
-    }
-    if (count < 0) {
-      value.style.color = "red";
-    }
-    if (count === 0) {
-      value.style.color = "#222";
-    }
-    value.textContent = count;
+    showCount();
   });
 });
